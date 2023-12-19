@@ -1,7 +1,7 @@
 function iniciarSesion(){
-    usuario = document.getElementById("usuario").value
-    localStorage.setItem("usuario",usuario)
-    window.location = "Grupos.html"
+    usuario = document.getElementById("usuario").value;
+    localStorage.setItem("usuario",usuario);
+    window.location = "Grupos.html";
 }
 function bienvenida(){
 document.getElementById("bienvenida").innerHTML = "¡Bienvenido a Droxid "+ localStorage.getItem("usuario") + "!"
@@ -24,4 +24,28 @@ function agregarSala(){
         Hola:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
     })
     document.getElementById("nombre_grupo").value=""
+
 }
+function cerrarSesion(){
+    window.location = "index.html";
+}
+room_name = localStorage.getItem("room_name")
+function consultarSalas(){
+    firebase.database().ref("/").on("value",function (snapshot){
+      console.log("holaaa")
+        document.getElementById("listaGrupos").innerHTML = "";
+        snapshot.forEach(function (childSnapshot){
+            childKey = childSnapshot.key;
+            console.log(childKey)
+            document.getElementById("listaGrupos").innerHTML += '<h1 id="'+childKey+'" class="Salas" onclick="verChat(this.id)">'+childKey+'</h1>'
+
+        })
+    })
+}    consultarSalas();
+
+function verChat(sala){
+    console.log("Bienvenido a "+ sala)
+    localStorage.setItem("chat", sala)
+    window.location = "chat.html"
+}
+
