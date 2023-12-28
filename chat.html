@@ -15,14 +15,15 @@
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.2/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/live/3.1/firebase.js"></script>
-
+    <script src="main.js"></script>
 </head>
 
-<body onload="">
+<body onload="consultarChat()">
 
 
     <div class="container">
-        <button id="logout" onclick="window.location = 'Grupos.html';" class="glyphicon glyphicon-log-out btn btn-danger">Salir</button>
+        <button id="logout" onclick="window.location = 'Grupos.html';"
+            class="glyphicon glyphicon-log-out btn btn-danger">Salir</button>
 
         <h1 class="header">
             Droxid
@@ -32,8 +33,20 @@
         </h1>
         <h3 id="bienvenida" class="color_white"></h3>
 
+        <div id="Mensajes">
+
+            <div class="Texto">
+<img src="Droxid 2.0.png" alt="">
+<b>Usuario</b>:<i>hola grupoooo</i>
+            </div>
 
         </div>
+        <div id="mensaje">
+<input type="text" placeholder="Escribe un mensaje para el grupo" id="redaccion">
+<button onclick="enviar()">Enviar</button>
+        </div>
+
+    </div>
 </body>
 
 </html>

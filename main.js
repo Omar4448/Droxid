@@ -2,6 +2,8 @@ function iniciarSesion(){
     usuario = document.getElementById("usuario").value;
     localStorage.setItem("usuario",usuario);
     window.location = "Grupos.html";
+    foto = document.getElementById("foto").value;
+    localStorage.setItem("foto",foto);
 }
 function bienvenida(){
 document.getElementById("bienvenida").innerHTML = "¡Bienvenido a Droxid "+ localStorage.getItem("usuario") + "!"
@@ -20,8 +22,10 @@ firebase.initializeApp(firebaseConfig);
 
 function agregarSala(){
     nombre_grupo=document.getElementById("nombre_grupo").value
-    firebase.database().ref().child(nombre_grupo).update({
-        Hola:"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+    firebase.database().ref().child(nombre_grupo).push({
+        mensaje:"Se ha creado el grupo correctamente",
+        usuario:"Servidor",
+        foto:"Droxid 2.0.png",
     })
     document.getElementById("nombre_grupo").value=""
 
@@ -48,4 +52,27 @@ function verChat(sala){
     localStorage.setItem("chat", sala)
     window.location = "chat.html"
 }
-
+function enviar(){
+    redaccion = document.getElementById("redaccion").value
+   chat = localStorage.getItem("chat")
+    firebase.database().ref(chat).push({
+        mensaje:redaccion,
+        usuario: localStorage.getItem("usuario"),
+        foto: localStorage.getItem("foto")
+    })
+    document.getElementById("redaccion").value=""
+}
+function consultarChat(){
+    chat = localStorage.getItem("chat")
+    firebase.database().ref(chat).on("value",function (snapshot){
+        console.log("Todo esta bien (por ahora)")
+          document.getElementById("Mensajes").innerHTML = "";
+          snapshot.forEach(function (childSnapshot){
+              childKey = childSnapshot.key;
+              childData = childSnapshot.val()
+              console.log(childKey)
+                document.getElementById("Mensajes").innerHTML += '<div class="Texto"><img src="'+childData.foto+'" alt=""><b>'+childData.usuario+'</b>:<i>'+childData.mensaje+'</i>'
+  
+          })
+      })
+  } 
