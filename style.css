@@ -120,6 +120,7 @@ width: fit-content;
 }
 .Texto{
 	font-size: large;
+
 }
 #Mensaje{
 	position: absolute;
@@ -128,4 +129,28 @@ width: fit-content;
 }
 #redaccion{
 	width:50% ;
+}
+#Mensajes{
+overflow-y:scroll;
+max-height: 570px;
+padding-left: 15px;
+word-wrap: break-word;
+
+
+}
+.noScroll{
+overflow: hidden;
+}
+#Redaccion{
+	background-color:#a3e920;
+	color: rgb(0, 0, 0);
+	
+}
+#Redaccion::placeholder{
+	color:#000000
+}
+#enviar{
+	background-color:#a3e920;
+	color: rgb(0, 0, 0);
+	display: none;
 }

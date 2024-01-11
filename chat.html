@@ -18,7 +18,7 @@
     <script src="main.js"></script>
 </head>
 
-<body onload="consultarChat()">
+<body onload="consultarChat()" class="noScroll">
 
 
     <div class="container">
@@ -36,14 +36,14 @@
         <div id="Mensajes">
 
             <div class="Texto">
-<img src="Droxid 2.0.png" alt="">
-<b>Usuario</b>:<i>hola grupoooo</i>
+                <img src="Droxid 2.0.png" alt="">
+                <b>Usuario</b>:<i>hola grupoooo</i>
             </div>
 
         </div>
         <div id="mensaje">
-<input type="text" placeholder="Escribe un mensaje para el grupo" id="redaccion">
-<button onclick="enviar()">Enviar</button>
+            <input type="text" placeholder="Escribe un mensaje para el grupo" id="redaccion" oninput="mostrar()" >
+            <button onclick="enviar()" id= "enviar">Enviar</button>
         </div>
 
     </div>
